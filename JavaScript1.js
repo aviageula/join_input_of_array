@@ -5,11 +5,13 @@ var divToShowArray = document.getElementById("arrayString");//הדיב שבו י
 var theUl=document.getElementById("theUl");
 
 var pushToArray = function () {
-    theArrayToPush.push(itemToSave.value);
-    makeListFromItem();
+    if (itemToSave.value.trim().length > 0) {
+        theArrayToPush.push(itemToSave.value);
+        makeListFromItem();
+    }
     resetTheItem();
 };
-/*הפונקציה הזאת דוחפת למערך כל אייטם*/
+/*הפונקציה הזאת דוחפת למערך כל אייטם רק כאשר יש ערך בשדה של האייטם*/
 
 var makeListFromItem = function () {
     var liForItem = document.createElement("li");
@@ -32,7 +34,7 @@ var resetAllFildes = function () {
 /*עושה ריסט לכל השדות*/
 
 var joinArray = function () {
-    if (!(saveDelimiter.value.length < 1)) {
+    if (!(saveDelimiter.value.trim().length < 1)) {
         divToShowArray.innerHTML = theArrayToPush.join(saveDelimiter.value);
         resetAllFildes();
         theArrayToPush = [];
